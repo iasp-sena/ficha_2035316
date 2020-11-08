@@ -28,6 +28,11 @@ public class UsuarioBuilder {
         return this;
     }
     
+    public UsuarioBuilder tipoDocumentoId(Integer tipoDocumentoId){
+        usuario.setTipoDocumentoId(tipoDocumentoId);
+        return this;
+    }
+    
     public UsuarioBuilder nombres(String nombres){
         usuario.setNombres(nombres);
         return this;
