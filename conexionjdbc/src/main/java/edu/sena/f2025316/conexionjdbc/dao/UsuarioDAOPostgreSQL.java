@@ -45,5 +45,10 @@ public class UsuarioDAOPostgreSQL implements UsuarioDAO{
     public void eliminarPorId(Integer id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public Usuario consularPorUsuarioClave(String usuario, String clave) throws ConexionExcpetion {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

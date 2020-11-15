@@ -1,12 +1,14 @@
 edu/sena/f2025316/conexionjdbc/Main.class
-edu/sena/f2025316/conexionjdbc/dao/ProductoDAOMySql.class
-edu/sena/f2025316/conexionjdbc/dao/ProductoDAO.class
+edu/sena/f2025316/conexionjdbc/dao/GenericDAO.class
+edu/sena/f2025316/conexionjdbc/dao/TipoDocumentoDAO.class
+edu/sena/f2025316/conexionjdbc/dao/TipoDocumentoDAOPostgreSQL.class
+edu/sena/f2025316/conexionjdbc/dao/TipoDocumentoDAOJPA.class
 edu/sena/f2025316/conexionjdbc/modelo/builders/UsuarioBuilder.class
 edu/sena/f2025316/conexionjdbc/dao/UsuarioDAO.class
 edu/sena/f2025316/conexionjdbc/exepciones/enums/ConexionExcpetionEnum.class
 edu/sena/f2025316/conexionjdbc/dao/fabricas/Factory.class
+edu/sena/f2025316/conexionjdbc/dao/TipoDocumentoDAOMySql.class
 edu/sena/f2025316/conexionjdbc/dao/fabricas/FactoryDAOMySQL.class
-edu/sena/f2025316/conexionjdbc/dao/ProductoDAOPostgreSQL.class
 edu/sena/f2025316/conexionjdbc/dao/fabricas/FactoryDAO.class
 edu/sena/f2025316/conexionjdbc/modelo/Usuario_.class
 edu/sena/f2025316/conexionjdbc/exepciones/FactoryException.class
@@ -18,6 +20,7 @@ edu/sena/f2025316/conexionjdbc/modelo/TipoDocumento_.class
 edu/sena/f2025316/conexionjdbc/dao/UsuarioDAOMySql.class
 edu/sena/f2025316/conexionjdbc/dao/UsuarioDAOJPA.class
 edu/sena/f2025316/conexionjdbc/conexion/Conexion.class
+edu/sena/f2025316/conexionjdbc/dao/DAO.class
 edu/sena/f2025316/conexionjdbc/Main2.class
 edu/sena/f2025316/conexionjdbc/exepciones/enums/FactoryExcpetionEnum.class
 edu/sena/f2025316/conexionjdbc/dao/fabricas/FactoryDAOPostgreSQL.class

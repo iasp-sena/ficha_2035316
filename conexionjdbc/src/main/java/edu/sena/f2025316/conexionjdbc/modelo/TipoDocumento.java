@@ -13,6 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -23,6 +25,9 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "tbl_tipos_documentos")
+@NamedQueries(value = {
+    @NamedQuery(name = "TipoDocumento.consultarTodos", query = "SELECT td FROM TipoDocumento td")
+})
 public class TipoDocumento implements Serializable {
     
     @Id

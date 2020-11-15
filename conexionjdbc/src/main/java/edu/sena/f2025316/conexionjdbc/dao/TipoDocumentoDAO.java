@@ -6,22 +6,13 @@
 package edu.sena.f2025316.conexionjdbc.dao;
 
 import edu.sena.f2025316.conexionjdbc.exepciones.ConexionExcpetion;
-import edu.sena.f2025316.conexionjdbc.modelo.Usuario;
+import edu.sena.f2025316.conexionjdbc.modelo.TipoDocumento;
 import java.util.List;
 
 /**
  *
  * @author Ismael
  */
-public interface ProductoDAO {
+public interface TipoDocumentoDAO extends DAO<TipoDocumento, Integer>{
     
-    void registrar(Usuario usuario);
-    
-    Usuario consultarPorId(Integer id) throws ConexionExcpetion;
-    
-    List<Usuario> consultarTodos();
-    
-    void actualizar(Usuario usuario);
-    
-    void eliminarPorId(Integer id);
 }

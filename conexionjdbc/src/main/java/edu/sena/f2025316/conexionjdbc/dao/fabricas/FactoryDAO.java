@@ -5,8 +5,8 @@
  */
 package edu.sena.f2025316.conexionjdbc.dao.fabricas;
 
-import edu.sena.f2025316.conexionjdbc.dao.ProductoDAO;
 import edu.sena.f2025316.conexionjdbc.dao.UsuarioDAO;
+import edu.sena.f2025316.conexionjdbc.dao.TipoDocumentoDAO;
 
 /**
  *
@@ -16,6 +16,6 @@ public interface FactoryDAO {
     
     UsuarioDAO getUsuarioDAO();
     
-    ProductoDAO getProductoDAO();
+    TipoDocumentoDAO getTipoDocumentoDAO();
     
 }

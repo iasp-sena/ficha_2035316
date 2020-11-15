@@ -4,7 +4,10 @@
 /Users/ismael/Documents/SENA/Fichas/2035316/conexionjdbc/src/main/java/edu/sena/f2025316/conexionjdbc/conexion/Conexion.java
 /Users/ismael/Documents/SENA/Fichas/2035316/conexionjdbc/src/main/java/edu/sena/f2025316/conexionjdbc/exepciones/enums/ConexionExcpetionEnum.java
 /Users/ismael/Documents/SENA/Fichas/2035316/conexionjdbc/src/main/java/edu/sena/f2025316/conexionjdbc/dao/ProductoDAOPostgreSQL.java
+/Users/ismael/Documents/SENA/Fichas/2035316/conexionjdbc/src/main/java/edu/sena/f2025316/conexionjdbc/dao/UsuarioDAOJPA.java
+/Users/ismael/Documents/SENA/Fichas/2035316/conexionjdbc/src/main/java/edu/sena/f2025316/conexionjdbc/dao/fabricas/FactoryDAOJPA.java
 /Users/ismael/Documents/SENA/Fichas/2035316/conexionjdbc/src/main/java/edu/sena/f2025316/conexionjdbc/dao/fabricas/Factory.java
+/Users/ismael/Documents/SENA/Fichas/2035316/conexionjdbc/src/main/java/edu/sena/f2025316/conexionjdbc/modelo/TipoDocumento.java
 /Users/ismael/Documents/SENA/Fichas/2035316/conexionjdbc/src/main/java/edu/sena/f2025316/conexionjdbc/exepciones/FactoryException.java
 /Users/ismael/Documents/SENA/Fichas/2035316/conexionjdbc/src/main/java/edu/sena/f2025316/conexionjdbc/dao/UsuarioDAOMySql.java
 /Users/ismael/Documents/SENA/Fichas/2035316/conexionjdbc/src/main/java/edu/sena/f2025316/conexionjdbc/dao/UsuarioDAOPostgreSQL.java

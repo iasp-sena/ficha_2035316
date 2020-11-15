@@ -17,49 +17,15 @@ import javax.persistence.Persistence;
  *
  * @author ismael
  */
-public class UsuarioDAOJPA implements UsuarioDAO{
-    
-    public static final String PU = "ejemplo_PU";
-    
-    private EntityManager em;
+public class UsuarioDAOJPA extends GenericDAO<Usuario, Integer>implements UsuarioDAO{
     
     public UsuarioDAOJPA(){
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory(PU);
-        em = emf.createEntityManager();
+        super(Usuario.class);
     }
 
     @Override
-    public void registrar(Usuario usuario) throws ConexionExcpetion {
-        System.out.println("Estamos registrando con JPA....");
-        EntityTransaction et = em.getTransaction();
-        try{
-            et.begin();
-            em.persist(em.merge(usuario));
-            et.commit();
-        } catch (Exception e){
-            et.rollback();
-        }
-    }
-
-    @Override
-    public Usuario consultarPorId(Integer id) throws ConexionExcpetion {
-        System.out.println("Estamos consultando con JPA....");
-        return em.find(Usuario.class, id);
-    }
-
-    @Override
-    public List<Usuario> consultarTodos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void actualizar(Usuario usuario) throws ConexionExcpetion {
-        registrar(usuario);
-    }
-
-    @Override
-    public void eliminarPorId(Integer id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Usuario consularPorUsuarioClave(String usuario, String clave) throws ConexionExcpetion {
+        return null;
     }
     
 }

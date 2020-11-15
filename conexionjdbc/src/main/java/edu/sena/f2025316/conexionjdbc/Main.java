@@ -5,26 +5,17 @@
  */
 package edu.sena.f2025316.conexionjdbc;
 
-import edu.sena.f2025316.conexionjdbc.conexion.Conexion;
-import edu.sena.f2025316.conexionjdbc.dao.ProductoDAO;
 import edu.sena.f2025316.conexionjdbc.dao.UsuarioDAO;
-import edu.sena.f2025316.conexionjdbc.dao.UsuarioDAOMySql;
-import edu.sena.f2025316.conexionjdbc.dao.UsuarioDAOPostgreSQL;
 import edu.sena.f2025316.conexionjdbc.dao.fabricas.Factory;
 import edu.sena.f2025316.conexionjdbc.dao.fabricas.FactoryDAO;
-import edu.sena.f2025316.conexionjdbc.dao.fabricas.FactoryDAOMySQL;
 import edu.sena.f2025316.conexionjdbc.exepciones.ConexionExcpetion;
 import edu.sena.f2025316.conexionjdbc.exepciones.FactoryException;
 import edu.sena.f2025316.conexionjdbc.modelo.Usuario;
-import edu.sena.f2025316.conexionjdbc.modelo.builders.UsuarioBuilder;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import edu.sena.f2025316.conexionjdbc.dao.TipoDocumentoDAO;
+import edu.sena.f2025316.conexionjdbc.modelo.TipoDocumento;
+import java.util.List;
 
 /**
  *
@@ -35,8 +26,8 @@ public class Main {
     public static void main(String[] args) {
         try {
             FactoryDAO factoryDAO = Factory.getFactoryDAO();
-            UsuarioDAO uDao = factoryDAO.getUsuarioDAO();
-            ProductoDAO pDAO = factoryDAO.getProductoDAO();
+            UsuarioDAO uDAO = factoryDAO.getUsuarioDAO();
+            TipoDocumentoDAO tdDAO = factoryDAO.getTipoDocumentoDAO();
             
             /*
             //Registrar
@@ -48,7 +39,7 @@ public class Main {
                     .nombreUsuario("pepito")
                     .clave("1234")
                     .build();
-            uDao.registrar(ur);
+            uDAO.registrar(ur);
             */
             
             
@@ -75,12 +66,27 @@ public class Main {
             
             
             //Consultar por id
-            Usuario u = uDao.consultarPorId(2);
+            Usuario u = uDAO.consultarPorId(2);
             System.out.println(String.format("Id: %d - Nombre: %s - Apellidos: %s",
                     u.getId(), u.getNombres(), u.getApellidos()));
             System.out.println("Todo bien....");
             
-            System.out.println(u.getTipoDocumento().getCodigo());
+            TipoDocumento td = tdDAO.consultarPorId(2);
+            System.out.println(td);
+            
+            //System.out.println(u.getTipoDocumento().getCodigo());
+            
+            
+            List<Usuario> us = uDAO.consultarTodos();
+            List<TipoDocumento> tds = tdDAO.consultarTodos();
+            
+            System.out.println("############################ USUARIOS ##################################");
+            us.forEach(System.out::println);
+            
+            
+            System.out.println("############################ TD ##################################");
+            tds.forEach(System.out::println);
+            
             
         } catch (ConexionExcpetion ex) {
             System.out.println(ex.getTipo().getCodigo() + ex.getTipo().getMensaje());

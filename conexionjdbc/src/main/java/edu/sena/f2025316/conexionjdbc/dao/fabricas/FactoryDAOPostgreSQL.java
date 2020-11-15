@@ -5,10 +5,10 @@
  */
 package edu.sena.f2025316.conexionjdbc.dao.fabricas;
 
-import edu.sena.f2025316.conexionjdbc.dao.ProductoDAO;
-import edu.sena.f2025316.conexionjdbc.dao.ProductoDAOPostgreSQL;
+import edu.sena.f2025316.conexionjdbc.dao.TipoDocumentoDAOPostgreSQL;
 import edu.sena.f2025316.conexionjdbc.dao.UsuarioDAO;
 import edu.sena.f2025316.conexionjdbc.dao.UsuarioDAOPostgreSQL;
+import edu.sena.f2025316.conexionjdbc.dao.TipoDocumentoDAO;
 
 /**
  *
@@ -22,8 +22,8 @@ public class FactoryDAOPostgreSQL implements FactoryDAO {
     }
 
     @Override
-    public ProductoDAO getProductoDAO() {
-        return new ProductoDAOPostgreSQL();
+    public TipoDocumentoDAO getTipoDocumentoDAO() {
+        return new TipoDocumentoDAOPostgreSQL();
     }
     
 }

@@ -13,15 +13,8 @@ import java.util.List;
  *
  * @author Ismael
  */
-public interface UsuarioDAO {
+public interface UsuarioDAO extends DAO<Usuario, Integer>{
     
-    void registrar(Usuario usuario) throws ConexionExcpetion;
+    Usuario consularPorUsuarioClave(String usuario, String clave) throws ConexionExcpetion;
     
-    Usuario consultarPorId(Integer id) throws ConexionExcpetion;
-    
-    List<Usuario> consultarTodos();
-    
-    void actualizar(Usuario usuario) throws ConexionExcpetion;
-    
-    void eliminarPorId(Integer id);
 }

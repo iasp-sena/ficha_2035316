@@ -5,11 +5,10 @@
  */
 package edu.sena.f2025316.conexionjdbc.dao.fabricas;
 
-import edu.sena.f2025316.conexionjdbc.dao.ProductoDAO;
-import edu.sena.f2025316.conexionjdbc.dao.ProductoDAOMySql;
 import edu.sena.f2025316.conexionjdbc.dao.UsuarioDAO;
 import edu.sena.f2025316.conexionjdbc.dao.UsuarioDAOJPA;
-import edu.sena.f2025316.conexionjdbc.dao.UsuarioDAOMySql;
+import edu.sena.f2025316.conexionjdbc.dao.TipoDocumentoDAO;
+import edu.sena.f2025316.conexionjdbc.dao.TipoDocumentoDAOJPA;
 
 /**
  *
@@ -23,8 +22,8 @@ public class FactoryDAOJPA implements FactoryDAO {
     }
 
     @Override
-    public ProductoDAO getProductoDAO() {
-        return null;
+    public TipoDocumentoDAO getTipoDocumentoDAO() {
+        return new TipoDocumentoDAOJPA();
     }
     
 }
