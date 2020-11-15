@@ -21,7 +21,7 @@ public interface UsuarioDAO {
     
     List<Usuario> consultarTodos();
     
-    void actualizar(Usuario usuario);
+    void actualizar(Usuario usuario) throws ConexionExcpetion;
     
     void eliminarPorId(Integer id);
 }

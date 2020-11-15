@@ -38,16 +38,18 @@ public class Main {
             UsuarioDAO uDao = factoryDAO.getUsuarioDAO();
             ProductoDAO pDAO = factoryDAO.getProductoDAO();
             
-            
+            /*
             //Registrar
             Usuario ur = UsuarioBuilder.builder()
+                    .tipoDocumentoId(1)
+                    .documento("2222222222")
                     .nombres("Pepito")
                     .apellidos("Perez")
                     .nombreUsuario("pepito")
                     .clave("1234")
                     .build();
             uDao.registrar(ur);
-            
+            */
             
             
             
@@ -77,6 +79,9 @@ public class Main {
             System.out.println(String.format("Id: %d - Nombre: %s - Apellidos: %s",
                     u.getId(), u.getNombres(), u.getApellidos()));
             System.out.println("Todo bien....");
+            
+            System.out.println(u.getTipoDocumento().getCodigo());
+            
         } catch (ConexionExcpetion ex) {
             System.out.println(ex.getTipo().getCodigo() + ex.getTipo().getMensaje());
             ex.printStackTrace();

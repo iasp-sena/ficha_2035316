@@ -14,6 +14,9 @@ import edu.sena.f2025316.conexionjdbc.exepciones.enums.FactoryExcpetionEnum;
  */
 public class Factory {
     
+    private static final String MY_SQL = "edu.sena.f2025316.conexionjdbc.dao.fabricas.FactoryDAOMySQL";
+    private static final String JPA = "edu.sena.f2025316.conexionjdbc.dao.fabricas.FactoryDAOJPA";
+    
     private Factory(){
         
     }
@@ -21,7 +24,7 @@ public class Factory {
     public static FactoryDAO getFactoryDAO() throws FactoryException{
         try {
             FactoryDAO factoryDAO = (FactoryDAO) Class
-                    .forName("edu.sena.f2025316.conexionjdbc.dao.fabricas.FactoryDAOMySQL")
+                    .forName(JPA)
                     .newInstance();
             return factoryDAO;
         } catch (Exception ex) {

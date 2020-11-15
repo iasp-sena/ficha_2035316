@@ -8,9 +8,12 @@ package edu.sena.f2025316.conexionjdbc.modelo;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -26,8 +29,10 @@ public class Usuario implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
+    /*
     @Column(name = "tipo_documento_id", nullable = false)
     private Integer tipoDocumentoId;
+    */
     
     @Column(name = "numero_documento", length = 45)
     private String documento;
@@ -44,6 +49,10 @@ public class Usuario implements Serializable {
     @Column(name = "clave", length = 45, nullable = false)
     private String clave;
     
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tipo_documento_id")
+    private TipoDocumento tipoDocumento;
+    
     //<editor-fold defaultstate="collapsed" desc="Getters && Setters">
    
     public Integer getId() {
@@ -54,6 +63,7 @@ public class Usuario implements Serializable {
         this.id = id;
     }
 
+    /*
     public Integer getTipoDocumentoId() {
         return tipoDocumentoId;
     }
@@ -61,6 +71,7 @@ public class Usuario implements Serializable {
     public void setTipoDocumentoId(Integer tipoDocumentoId) {
         this.tipoDocumentoId = tipoDocumentoId;
     }
+    */
 
     public String getDocumento() {
         return documento;
@@ -101,12 +112,20 @@ public class Usuario implements Serializable {
     public void setClave(String clave) {
         this.clave = clave;
     }
+
+    public TipoDocumento getTipoDocumento() {
+        return tipoDocumento;
+    }
+
+    public void setTipoDocumento(TipoDocumento tipoDocumento) {
+        this.tipoDocumento = tipoDocumento;
+    }
     
     //</editor-fold>
 
     @Override
     public String toString() {
-        return "Usuario{" + "id=" + id + ", tipoDocumentoId=" + tipoDocumentoId + ", documento=" + documento + ", nombres=" + nombres + ", apellidos=" + apellidos + ", nombreUsuario=" + nombreUsuario + ", clave=" + clave + '}';
+        return "Usuario{" + "id=" + id + ", documento=" + documento + ", nombres=" + nombres + ", apellidos=" + apellidos + ", nombreUsuario=" + nombreUsuario + ", clave=" + clave + ", tipoDocumento=" + tipoDocumento + '}';
     }
     
     

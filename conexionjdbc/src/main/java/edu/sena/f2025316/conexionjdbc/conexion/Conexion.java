@@ -37,7 +37,7 @@ public class Conexion {
     private static void iniciarConexion() throws ConexionExcpetion {
         try {
             Properties propiedadesConexion = new Properties();
-            propiedadesConexion.put("url", "jdbc:mysql://localhost:3307/ejemplo_crud");
+            propiedadesConexion.put("url", "jdbc:mysql://localhost:3306/db_usuarios");
             propiedadesConexion.put("user", "root");
             propiedadesConexion.put("password", "1234567890");
             conexion = DriverManager.getConnection(

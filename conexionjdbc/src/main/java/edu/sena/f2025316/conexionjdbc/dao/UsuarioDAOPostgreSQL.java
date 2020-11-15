@@ -37,7 +37,7 @@ public class UsuarioDAOPostgreSQL implements UsuarioDAO{
     }
 
     @Override
-    public void actualizar(Usuario usuario) {
+    public void actualizar(Usuario usuario) throws ConexionExcpetion {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

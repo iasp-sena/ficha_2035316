@@ -5,6 +5,7 @@
  */
 package edu.sena.f2025316.conexionjdbc.modelo.builders;
 
+import edu.sena.f2025316.conexionjdbc.modelo.TipoDocumento;
 import edu.sena.f2025316.conexionjdbc.modelo.Usuario;
 
 /**
@@ -29,7 +30,12 @@ public class UsuarioBuilder {
     }
     
     public UsuarioBuilder tipoDocumentoId(Integer tipoDocumentoId){
-        usuario.setTipoDocumentoId(tipoDocumentoId);
+        //usuario.setTipoDocumentoId(tipoDocumentoId);
+        return this;
+    }
+    
+    public UsuarioBuilder documento(String documento){
+        usuario.setDocumento(documento);
         return this;
     }
     
@@ -50,6 +56,11 @@ public class UsuarioBuilder {
     
     public UsuarioBuilder apellidos(String apellidos){
         usuario.setApellidos(apellidos);
+        return this;
+    }
+    
+    public UsuarioBuilder tipoDocumento(TipoDocumento tipoDocumento){
+        usuario.setTipoDocumento(tipoDocumento);
         return this;
     }
     

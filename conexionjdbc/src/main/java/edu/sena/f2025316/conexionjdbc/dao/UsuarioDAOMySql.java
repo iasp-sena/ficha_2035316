@@ -24,11 +24,14 @@ public class UsuarioDAOMySql implements UsuarioDAO{
     public void registrar(Usuario usuario) throws ConexionExcpetion{
         try{
             PreparedStatement ps = Conexion.getInstance()
-                    .prepareStatement("INSERT INTO tbl_usuario(nombres,apellidos,nombre_usuario,clave) VALUES(?,?,?,?)");
-            ps.setString(1, usuario.getNombres());
-            ps.setString(2, usuario.getApellidos());
-            ps.setString(3, usuario.getNombreUsuario());
-            ps.setString(4, usuario.getClave());
+                    .prepareStatement("INSERT INTO tbl_usuarios(tipo_documento_id,numero_documento,nombres,apellidos,nombre_usuario,clave) VALUES(?,?,?,?,?,?)");
+            //ps.setInt(1, usuario.getTipoDocumentoId());
+            ps.setInt(1, usuario.getTipoDocumento().getId());
+            ps.setString(2, usuario.getDocumento());
+            ps.setString(3, usuario.getNombres());
+            ps.setString(4, usuario.getApellidos());
+            ps.setString(5, usuario.getNombreUsuario());
+            ps.setString(6, usuario.getClave());
             ps.execute();
             ps.close();
         } catch(SQLException ex){
@@ -40,13 +43,16 @@ public class UsuarioDAOMySql implements UsuarioDAO{
     public Usuario consultarPorId(Integer id) throws ConexionExcpetion {
         try {
             PreparedStatement ps = Conexion.getInstance()
-                    .prepareStatement("SELECT * FROM tbl_usuario WHERE id = ?");
+                    .prepareStatement("SELECT * FROM tbl_usuarios WHERE id = ?");
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             Usuario u = null;
             if(rs.next()){
                 u = new Usuario();
                 u.setId(rs.getInt("id"));
+                //u.setTipoDocumentoId(rs.getInt("tipo_documento_id"));
+                u.setTipoDocumento(null);
+                u.setDocumento(rs.getString("numero_documento"));
                 u.setNombres(rs.getString("nombres"));
                 u.setApellidos(rs.getString("apellidos"));
                 u.setNombreUsuario(rs.getString("nombre_usuario"));
@@ -65,7 +71,7 @@ public class UsuarioDAOMySql implements UsuarioDAO{
     }
 
     @Override
-    public void actualizar(Usuario usuario) {
+    public void actualizar(Usuario usuario) throws ConexionExcpetion {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
