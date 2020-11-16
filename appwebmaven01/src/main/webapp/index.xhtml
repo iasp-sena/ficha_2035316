@@ -4,6 +4,14 @@
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    
+    <ui:define name="content">
+        <h:form>
+            <h:inputText value="#{saludoController.nombre}"/>
+            <h:commandButton actionListener="#{saludoController.saludar()}" value="Saludar"/>
+        </h:form>
+        <h4>#{saludoController.nombre}</h4>
+    </ui:define>
 
     <ui:define name="scriptsPage">
         <!-- Page level plugins -->
