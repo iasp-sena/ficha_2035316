@@ -6,6 +6,8 @@
 package edu.sena.f2025316.appwebmaven01.controllers;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 /**
@@ -32,6 +34,9 @@ public class SaludoController {
     }
     
     public void saludar(){
+        FacesContext fc = FacesContext.getCurrentInstance();
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Error ingre el número...", nombre);
+        fc.addMessage("numeroDocumento", message);
         System.out.println("Hola desde el controlador... " + nombre);
     }
     

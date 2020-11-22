@@ -6,6 +6,9 @@
 package edu.sena.f2025316.appwebmaven01.modelo;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,74 +19,95 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
- * @author Ismael
+ * @author ismael
  */
 @Entity
 @Table(name = "tbl_usuarios")
-@NamedQueries(value = {
-    @NamedQuery(name = "Usuario.consultarTodos", query = "SELECT u FROM Usuario u")
-})
+@NamedQueries({
+    @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u"),
+    @NamedQuery(name = "Usuario.findById", query = "SELECT u FROM Usuario u WHERE u.id = :id"),
+    @NamedQuery(name = "Usuario.findByNumeroDocumento", query = "SELECT u FROM Usuario u WHERE u.numeroDocumento = :numeroDocumento"),
+    @NamedQuery(name = "Usuario.findByNombres", query = "SELECT u FROM Usuario u WHERE u.nombres = :nombres"),
+    @NamedQuery(name = "Usuario.findByApellidos", query = "SELECT u FROM Usuario u WHERE u.apellidos = :apellidos"),
+    @NamedQuery(name = "Usuario.findByNombreUsuario", query = "SELECT u FROM Usuario u WHERE u.nombreUsuario = :nombreUsuario"),
+    @NamedQuery(name = "Usuario.findByClave", query = "SELECT u FROM Usuario u WHERE u.clave = :clave"),
+    @NamedQuery(name = "Usuario.findByUsuarioYClave", query = "SELECT u FROM Usuario u WHERE u.nombreUsuario = :nombreUsuario AND u.clave = :clave")})
 public class Usuario implements Serializable {
-    
+
+    private static final long serialVersionUID = 1L;
     @Id
-    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    
-    /*
-    @Column(name = "tipo_documento_id", nullable = false)
-    private Integer tipoDocumentoId;
-    */
-    
-    @Column(name = "numero_documento", length = 45)
-    private String documento;
-    
-    @Column(name = "nombres", length = 100, nullable = false)
+    @Basic(optional = false)
+    @Column(name = "id")
+    private Long id;
+    @Size(max = 45)
+    @Column(name = "numero_documento")
+    private String numeroDocumento;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 100)
+    @Column(name = "nombres")
     private String nombres;
-    
-    @Column(name = "apellidos", length = 100, nullable = false)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 100)
+    @Column(name = "apellidos")
     private String apellidos;
-    
-    @Column(name = "nombre_usuario", length = 50, nullable = false)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
+    @Column(name = "nombre_usuario")
     private String nombreUsuario;
-    
-    @Column(name = "clave", length = 45, nullable = false)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "clave")
     private String clave;
-    
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tipo_documento_id")
+    @JoinColumn(name = "tbl_municipio_id", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Municipio municipio;
+    @JoinColumn(name = "tipo_documento_id", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private TipoDocumento tipoDocumento;
-    
-    //<editor-fold defaultstate="collapsed" desc="Getters && Setters">
-   
-    public Integer getId() {
-        return id;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario", fetch = FetchType.LAZY)
+    private List<UsuarioRol> roles;
+
+    public Usuario() {
     }
 
-    public void setId(Integer id) {
+    public Usuario(Long id) {
         this.id = id;
     }
 
-    /*
-    public Integer getTipoDocumentoId() {
-        return tipoDocumentoId;
+    public Usuario(Long id, String nombres, String apellidos, String nombreUsuario, String clave) {
+        this.id = id;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.nombreUsuario = nombreUsuario;
+        this.clave = clave;
     }
 
-    public void setTipoDocumentoId(Integer tipoDocumentoId) {
-        this.tipoDocumentoId = tipoDocumentoId;
-    }
-    */
-
-    public String getDocumento() {
-        return documento;
+    public Long getId() {
+        return id;
     }
 
-    public void setDocumento(String documento) {
-        this.documento = documento;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNumeroDocumento() {
+        return numeroDocumento;
+    }
+
+    public void setNumeroDocumento(String numeroDocumento) {
+        this.numeroDocumento = numeroDocumento;
     }
 
     public String getNombres() {
@@ -118,6 +142,14 @@ public class Usuario implements Serializable {
         this.clave = clave;
     }
 
+    public Municipio getMunicipio() {
+        return municipio;
+    }
+
+    public void setMunicipio(Municipio municipio) {
+        this.municipio = municipio;
+    }
+
     public TipoDocumento getTipoDocumento() {
         return tipoDocumento;
     }
@@ -125,13 +157,38 @@ public class Usuario implements Serializable {
     public void setTipoDocumento(TipoDocumento tipoDocumento) {
         this.tipoDocumento = tipoDocumento;
     }
-    
-    //</editor-fold>
+
+    public List<UsuarioRol> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<UsuarioRol> roles) {
+        this.roles = roles;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Usuario)) {
+            return false;
+        }
+        Usuario other = (Usuario) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
 
     @Override
     public String toString() {
-        return "Usuario{" + "id=" + id + ", documento=" + documento + ", nombres=" + nombres + ", apellidos=" + apellidos + ", nombreUsuario=" + nombreUsuario + ", clave=" + clave + ", tipoDocumento=" + tipoDocumento + '}';
+        return "edu.sena.f2025316.appwebmaven01.modelo.Usuario[ id=" + id + " ]";
     }
-    
     
 }

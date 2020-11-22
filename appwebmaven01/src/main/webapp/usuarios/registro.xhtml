@@ -9,7 +9,12 @@
     <ui:define name="titlePage">Registro Usuario</ui:define>
 
     <ui:define name="content">
-        <h:form id="formUsuario" class="col-12">
+        <h:messages id="msgGlobal" class="messages-global" 
+                    infoClass="message alert alert-primary"
+                    errorClass="message alert alert-danger"
+                    globalOnly="true" 
+                    showDetail="true" showSummary="true"/>
+        <h:form id="formUsuario" class="col-12" prependId="false">
             <div class="row">
                 <div class="col-6">
                     <div class="form-group">
@@ -27,7 +32,11 @@
                 <div class="col-6">
                     <div class="form-group">
                         <h:outputLabel for="numeroDocumento" value="Número documento"/>
-                        <h:inputText class="form-control" id="numeroDocumento" value="#{usuarioController.usuario.documento}"/>
+                        <h:inputText class="form-control" id="numeroDocumento" value="#{usuarioController.usuario.numeroDocumento}"/>
+                        <!--<h:message for="tipoDocumento" id="msgDocumento" class="messages-global" 
+                            infoClass="message alert alert-primary"
+                            errorClass="message alert alert-danger"
+                            showDetail="true" showSummary="true"/> -->
                     </div>
                 </div>
             </div>
@@ -58,8 +67,41 @@
                         <h:inputSecret class="form-control" id="clave" value="#{usuarioController.usuario.clave}"/>
                     </div>
                 </div>
+            </div><div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <h:outputLabel for="departamento" value="Departamento:"/>
+                        <h:selectOneMenu id="departamento" 
+                                         value="#{municipioController.idDepartamentoSeleccionado}"
+                                         class="form-control">
+                            <f:selectItem itemValue="#{null}" itemLabel="Seleccione el departamento..." />
+                            <f:selectItems value="#{departamentoController.departamentos}" 
+                                           var="dep" 
+                                           itemValue="#{dep.id}"
+                                           itemLabel="#{dep.codigoYDepartamento}"/>
+                            <f:ajax listener="#{saludoController.saludar()}" 
+                                    execute="@this" render="municipio"/>
+                        </h:selectOneMenu>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <h:outputLabel for="municipio" value="Municipio:"/>
+                        <h:selectOneMenu id="municipio" 
+                                         value="#{usuarioController.usuario.municipio.id}"
+                                         class="form-control">
+                            <f:selectItems value="#{municipioController.municipiosDepartamentoSeleccionado}" 
+                                           var="mun" 
+                                           itemValue="#{mun.id}"
+                                           itemLabel="#{mun.nombre}"/>
+                        </h:selectOneMenu>
+                    </div>
+                </div>
             </div>
-            <h:commandButton class="btn btn-primary" actionListener="#{usuarioController.registrar()}" value="Saludar"/>
+            <h:commandButton class="btn btn-primary" actionListener="#{saludoController.saludar()}" value="Saludar">
+                <f:ajax render="msgGlobal msgDocumento"/>
+            </h:commandButton>
+            <h:commandButton class="btn btn-primary" actionListener="#{usuarioController.registrar()}" value="Registrar"/>
         </h:form>
     </ui:define>
 

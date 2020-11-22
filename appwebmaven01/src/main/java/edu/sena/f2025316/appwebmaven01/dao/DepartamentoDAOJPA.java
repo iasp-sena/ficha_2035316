@@ -5,8 +5,8 @@
  */
 package edu.sena.f2025316.appwebmaven01.dao;
 
-import edu.sena.f2025316.appwebmaven01.dao.def.TipoDocumentoDAO;
-import edu.sena.f2025316.appwebmaven01.modelo.TipoDocumento;
+import edu.sena.f2025316.appwebmaven01.dao.def.DepartamentoDAO;
+import edu.sena.f2025316.appwebmaven01.modelo.Departamento;
 import javax.ejb.Stateless;
 
 /**
@@ -14,10 +14,10 @@ import javax.ejb.Stateless;
  * @author Ismael
  */
 @Stateless
-public class TipoDocumentoDAOJPA extends GenericDAO<TipoDocumento, Integer> implements TipoDocumentoDAO{
+public class DepartamentoDAOJPA extends GenericDAO<Departamento, Integer> implements DepartamentoDAO{
     
-    public TipoDocumentoDAOJPA(){
-        super(TipoDocumento.class);
+    public DepartamentoDAOJPA(){
+        super(Departamento.class);
     }
     
 }

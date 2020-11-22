@@ -5,15 +5,13 @@
  */
 package edu.sena.f2025316.appwebmaven01.controllers;
 
+import edu.sena.f2025316.appwebmaven01.builder.UsuarioBuilder;
 import edu.sena.f2025316.appwebmaven01.exeception.ConexionExcpetion;
-import edu.sena.f2025316.appwebmaven01.modelo.TipoDocumento;
 import edu.sena.f2025316.appwebmaven01.modelo.Usuario;
 import edu.sena.f2025316.appwebmaven01.services.UsuarioService;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
@@ -34,13 +32,15 @@ public class UsuarioController implements Serializable {
     private List<Usuario> usuarios;
 
     public UsuarioController() {
-        usuario = new Usuario();
-        usuario.setTipoDocumento(new TipoDocumento());
+
     }
 
     @PostConstruct
     public void init() {
-
+        usuario = UsuarioBuilder.builder()
+                .tipoDocumentoId(null)
+                .municipioId(null)
+                .build();
     }
 
     public Usuario getUsuario() {
@@ -68,6 +68,7 @@ public class UsuarioController implements Serializable {
             System.out.println("Vamos a registrar el usuario...");
             System.out.println(usuario);
             usuarioService.registrar(usuario);
+            init();
         } catch (ConexionExcpetion ex) {
             System.out.println("Error al registrar usuario");
             ex.printStackTrace();

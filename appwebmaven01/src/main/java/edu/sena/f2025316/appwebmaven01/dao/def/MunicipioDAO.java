@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.sena.f2025316.appwebmaven01.dao;
+package edu.sena.f2025316.appwebmaven01.dao.def;
 
 import edu.sena.f2025316.appwebmaven01.exeception.ConexionExcpetion;
-import edu.sena.f2025316.appwebmaven01.modelo.Usuario;
+import edu.sena.f2025316.appwebmaven01.modelo.Municipio;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -14,8 +15,8 @@ import javax.ejb.Local;
  * @author Ismael
  */
 @Local
-public interface UsuarioDAO extends DAO<Usuario, Integer>{
+public interface MunicipioDAO extends DAO<Municipio, Integer>{
     
-    Usuario consularPorUsuarioClave(String usuario, String clave) throws ConexionExcpetion;
+    List<Municipio> consularPorDepartamentoId(Integer idDepartamento) throws ConexionExcpetion;
     
 }

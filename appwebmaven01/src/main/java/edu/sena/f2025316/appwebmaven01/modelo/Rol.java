@@ -15,6 +15,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -27,13 +28,13 @@ import javax.validation.constraints.Size;
  * @author ismael
  */
 @Entity
-@Table(name = "tbl_tipos_documentos")
+@Table(name = "tbl_roles")
 @NamedQueries({
-    @NamedQuery(name = "TipoDocumento.findAll", query = "SELECT t FROM TipoDocumento t"),
-    @NamedQuery(name = "TipoDocumento.findById", query = "SELECT t FROM TipoDocumento t WHERE t.id = :id"),
-    @NamedQuery(name = "TipoDocumento.findByCodigo", query = "SELECT t FROM TipoDocumento t WHERE t.codigo = :codigo"),
-    @NamedQuery(name = "TipoDocumento.findByDescripcion", query = "SELECT t FROM TipoDocumento t WHERE t.descripcion = :descripcion")})
-public class TipoDocumento implements Serializable {
+    @NamedQuery(name = "Rol.findAll", query = "SELECT r FROM Rol r"),
+    @NamedQuery(name = "Rol.findById", query = "SELECT r FROM Rol r WHERE r.id = :id"),
+    @NamedQuery(name = "Rol.findByNombre", query = "SELECT r FROM Rol r WHERE r.nombre = :nombre"),
+    @NamedQuery(name = "Rol.findByHabilitado", query = "SELECT r FROM Rol r WHERE r.habilitado = :habilitado")})
+public class Rol implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -43,26 +44,28 @@ public class TipoDocumento implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 5)
-    @Column(name = "codigo")
-    private String codigo;
-    @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 45)
+    @Column(name = "nombre")
+    private String nombre;
+    @Lob
+    @Size(max = 65535)
     @Column(name = "descripcion")
     private String descripcion;
+    @Column(name = "habilitado")
+    private Short habilitado;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "rol", fetch = FetchType.LAZY)
+    private List<RolOperacion> operaciones;
 
-    public TipoDocumento() {
+    public Rol() {
     }
 
-    public TipoDocumento(Integer id) {
+    public Rol(Integer id) {
         this.id = id;
     }
 
-    public TipoDocumento(Integer id, String codigo, String descripcion) {
+    public Rol(Integer id, String nombre) {
         this.id = id;
-        this.codigo = codigo;
-        this.descripcion = descripcion;
+        this.nombre = nombre;
     }
 
     public Integer getId() {
@@ -73,12 +76,12 @@ public class TipoDocumento implements Serializable {
         this.id = id;
     }
 
-    public String getCodigo() {
-        return codigo;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getDescripcion() {
@@ -87,6 +90,22 @@ public class TipoDocumento implements Serializable {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public Short getHabilitado() {
+        return habilitado;
+    }
+
+    public void setHabilitado(Short habilitado) {
+        this.habilitado = habilitado;
+    }
+
+    public List<RolOperacion> getOperaciones() {
+        return operaciones;
+    }
+
+    public void setOperaciones(List<RolOperacion> operaciones) {
+        this.operaciones = operaciones;
     }
 
     @Override
@@ -99,10 +118,10 @@ public class TipoDocumento implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof TipoDocumento)) {
+        if (!(object instanceof Rol)) {
             return false;
         }
-        TipoDocumento other = (TipoDocumento) object;
+        Rol other = (Rol) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -111,7 +130,7 @@ public class TipoDocumento implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.sena.f2025316.appwebmaven01.modelo.TipoDocumento[ id=" + id + " ]";
+        return "edu.sena.f2025316.appwebmaven01.modelo.Rol[ id=" + id + " ]";
     }
     
 }

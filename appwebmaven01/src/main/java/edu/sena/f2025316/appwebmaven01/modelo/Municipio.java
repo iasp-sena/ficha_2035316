@@ -15,6 +15,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -27,13 +29,14 @@ import javax.validation.constraints.Size;
  * @author ismael
  */
 @Entity
-@Table(name = "tbl_tipos_documentos")
+@Table(name = "tbl_municipios")
 @NamedQueries({
-    @NamedQuery(name = "TipoDocumento.findAll", query = "SELECT t FROM TipoDocumento t"),
-    @NamedQuery(name = "TipoDocumento.findById", query = "SELECT t FROM TipoDocumento t WHERE t.id = :id"),
-    @NamedQuery(name = "TipoDocumento.findByCodigo", query = "SELECT t FROM TipoDocumento t WHERE t.codigo = :codigo"),
-    @NamedQuery(name = "TipoDocumento.findByDescripcion", query = "SELECT t FROM TipoDocumento t WHERE t.descripcion = :descripcion")})
-public class TipoDocumento implements Serializable {
+    @NamedQuery(name = "Municipio.findAll", query = "SELECT m FROM Municipio m"),
+    @NamedQuery(name = "Municipio.findById", query = "SELECT m FROM Municipio m WHERE m.id = :id"),
+    @NamedQuery(name = "Municipio.findByCodigo", query = "SELECT m FROM Municipio m WHERE m.codigo = :codigo"),
+    @NamedQuery(name = "Municipio.findByNombre", query = "SELECT m FROM Municipio m WHERE m.nombre = :nombre"),
+    @NamedQuery(name = "Municipio.findByDepartamentoId", query = "SELECT m FROM Municipio m WHERE m.departamento.id = :departamentoId")})
+public class Municipio implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -48,21 +51,24 @@ public class TipoDocumento implements Serializable {
     private String codigo;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
-    @Column(name = "descripcion")
-    private String descripcion;
+    @Size(min = 1, max = 100)
+    @Column(name = "nombre")
+    private String nombre;
+    @JoinColumn(name = "tbl_departamento_id", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Departamento departamento;
 
-    public TipoDocumento() {
+    public Municipio() {
     }
 
-    public TipoDocumento(Integer id) {
+    public Municipio(Integer id) {
         this.id = id;
     }
 
-    public TipoDocumento(Integer id, String codigo, String descripcion) {
+    public Municipio(Integer id, String codigo, String nombre) {
         this.id = id;
         this.codigo = codigo;
-        this.descripcion = descripcion;
+        this.nombre = nombre;
     }
 
     public Integer getId() {
@@ -81,12 +87,20 @@ public class TipoDocumento implements Serializable {
         this.codigo = codigo;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Departamento getDepartamento() {
+        return departamento;
+    }
+
+    public void setDepartamento(Departamento departamento) {
+        this.departamento = departamento;
     }
 
     @Override
@@ -99,10 +113,10 @@ public class TipoDocumento implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof TipoDocumento)) {
+        if (!(object instanceof Municipio)) {
             return false;
         }
-        TipoDocumento other = (TipoDocumento) object;
+        Municipio other = (Municipio) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -111,7 +125,7 @@ public class TipoDocumento implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.sena.f2025316.appwebmaven01.modelo.TipoDocumento[ id=" + id + " ]";
+        return "edu.sena.f2025316.appwebmaven01.modelo.Municipio[ id=" + id + " ]";
     }
     
 }

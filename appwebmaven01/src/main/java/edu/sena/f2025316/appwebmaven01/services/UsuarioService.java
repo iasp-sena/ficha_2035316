@@ -5,8 +5,8 @@
  */
 package edu.sena.f2025316.appwebmaven01.services;
 
-import edu.sena.f2025316.appwebmaven01.dao.TipoDocumentoDAO;
-import edu.sena.f2025316.appwebmaven01.dao.UsuarioDAO;
+import edu.sena.f2025316.appwebmaven01.dao.def.TipoDocumentoDAO;
+import edu.sena.f2025316.appwebmaven01.dao.def.UsuarioDAO;
 import edu.sena.f2025316.appwebmaven01.exeception.ConexionExcpetion;
 import edu.sena.f2025316.appwebmaven01.modelo.TipoDocumento;
 import edu.sena.f2025316.appwebmaven01.modelo.Usuario;
@@ -31,6 +31,10 @@ public class UsuarioService {
     
     public void registrar(Usuario usuario) throws ConexionExcpetion{
         usuarioDAO.registrar(usuario);
+    }
+
+    public Usuario consultarPorUsuarioYClave(String nombreUsuario, String clave) throws ConexionExcpetion {
+        return usuarioDAO.consularPorUsuarioClave(nombreUsuario, clave);
     }
     
 }

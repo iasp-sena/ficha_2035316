@@ -10,13 +10,11 @@ edu/sena/f2025316/conexionjdbc/dao/fabricas/Factory.class
 edu/sena/f2025316/conexionjdbc/dao/TipoDocumentoDAOMySql.class
 edu/sena/f2025316/conexionjdbc/dao/fabricas/FactoryDAOMySQL.class
 edu/sena/f2025316/conexionjdbc/dao/fabricas/FactoryDAO.class
-edu/sena/f2025316/conexionjdbc/modelo/Usuario_.class
 edu/sena/f2025316/conexionjdbc/exepciones/FactoryException.class
 edu/sena/f2025316/conexionjdbc/exepciones/ConexionExcpetion.class
 edu/sena/f2025316/conexionjdbc/dao/UsuarioDAOPostgreSQL.class
 edu/sena/f2025316/conexionjdbc/dao/fabricas/FactoryDAOJPA.class
 edu/sena/f2025316/conexionjdbc/modelo/Usuario.class
-edu/sena/f2025316/conexionjdbc/modelo/TipoDocumento_.class
 edu/sena/f2025316/conexionjdbc/dao/UsuarioDAOMySql.class
 edu/sena/f2025316/conexionjdbc/dao/UsuarioDAOJPA.class
 edu/sena/f2025316/conexionjdbc/conexion/Conexion.class

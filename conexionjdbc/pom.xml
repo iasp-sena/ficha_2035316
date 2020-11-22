@@ -33,6 +33,7 @@
         </dependency>
         
         <!-- https://mvnrepository.com/artifact/org.eclipse.persistence/eclipselink -->
+        <!--
         <dependency>
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>eclipselink</artifactId>
@@ -79,5 +80,20 @@
             <version>2.7.7</version>
             <scope>provided</scope>
         </dependency>
+                -->
+        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.4.23.Final</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>5.4.23.Final</version>
+        </dependency>
+
+
     </dependencies>
 </project>

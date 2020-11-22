@@ -5,6 +5,7 @@
  */
 package edu.sena.f2025316.appwebmaven01.builder;
 
+import edu.sena.f2025316.appwebmaven01.modelo.Municipio;
 import edu.sena.f2025316.appwebmaven01.modelo.TipoDocumento;
 import edu.sena.f2025316.appwebmaven01.modelo.Usuario;
 /**
@@ -23,18 +24,13 @@ public class UsuarioBuilder {
         return new UsuarioBuilder();
     }
     
-    public UsuarioBuilder id(Integer id){
+    public UsuarioBuilder id(Long id){
         usuario.setId(id);
         return this;
     }
     
-    public UsuarioBuilder tipoDocumentoId(Integer tipoDocumentoId){
-        //usuario.setTipoDocumentoId(tipoDocumentoId);
-        return this;
-    }
-    
     public UsuarioBuilder documento(String documento){
-        usuario.setDocumento(documento);
+        usuario.setNumeroDocumento(documento);
         return this;
     }
     
@@ -58,8 +54,23 @@ public class UsuarioBuilder {
         return this;
     }
     
+    public UsuarioBuilder tipoDocumentoId(Integer tipoDocumentoId){
+        usuario.setTipoDocumento(new TipoDocumento(tipoDocumentoId));
+        return this;
+    }
+    
     public UsuarioBuilder tipoDocumento(TipoDocumento tipoDocumento){
         usuario.setTipoDocumento(tipoDocumento);
+        return this;
+    }
+    
+    public UsuarioBuilder municipioId(Integer municipioId){
+        usuario.setMunicipio(new Municipio(municipioId));
+        return this;
+    }
+    
+    public UsuarioBuilder municipio(Municipio municipio){
+        usuario.setMunicipio(municipio);
         return this;
     }
     

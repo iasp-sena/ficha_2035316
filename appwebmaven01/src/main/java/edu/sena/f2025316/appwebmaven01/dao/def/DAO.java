@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.sena.f2025316.appwebmaven01.dao;
+package edu.sena.f2025316.appwebmaven01.dao.def;
 
 import edu.sena.f2025316.appwebmaven01.exeception.ConexionExcpetion;
 import java.util.List;

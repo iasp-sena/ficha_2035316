@@ -5,7 +5,7 @@
  */
 package edu.sena.f2025316.appwebmaven01.services;
 
-import edu.sena.f2025316.appwebmaven01.dao.TipoDocumentoDAO;
+import edu.sena.f2025316.appwebmaven01.dao.def.TipoDocumentoDAO;
 import edu.sena.f2025316.appwebmaven01.exeception.ConexionExcpetion;
 import edu.sena.f2025316.appwebmaven01.modelo.TipoDocumento;
 import java.util.ArrayList;

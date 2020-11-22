@@ -5,12 +5,14 @@
  */
 package edu.sena.f2025316.appwebmaven01.dao;
 
+import edu.sena.f2025316.appwebmaven01.dao.def.DAO;
 import edu.sena.f2025316.appwebmaven01.exeception.ConexionExcpetion;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 /**
@@ -21,31 +23,23 @@ public abstract class GenericDAO<T,PK> implements DAO<T, PK>{
     
     public static final String PU = "ejemplo_PU";
     
+    @PersistenceContext(unitName = PU)
     protected EntityManager em;
     protected Class<T> classs;
     
     public GenericDAO(Class<T> classs){
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory(PU);
-        em = emf.createEntityManager();
         this.classs = classs;
     }
     
     @Override
     public void registrar(T obj) {
         System.out.println("Estamos registrando con JPA....");
-        EntityTransaction et = em.getTransaction();
-        try{
-            et.begin();
-            em.persist(em.merge(obj));
-            et.commit();
-        } catch (Exception e){
-            et.rollback();
-        }
+        em.persist(em.merge(obj));
     }
 
     @Override
     public List<T> consultarTodos() {
-        TypedQuery<T> tq = em.createNamedQuery(classs.getSimpleName() + ".consultarTodos", classs);
+        TypedQuery<T> tq = em.createNamedQuery(classs.getSimpleName() + ".findAll", classs);
         return tq.getResultList();
     }
 
