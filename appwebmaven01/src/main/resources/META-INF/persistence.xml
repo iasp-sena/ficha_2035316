@@ -3,14 +3,7 @@
   <persistence-unit name="ejemplo_PU" transaction-type="JTA">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <jta-data-source>java:app/jdbc/appweb_JDNI</jta-data-source>
-    <class>edu.sena.f2025316.appwebmaven01.modelo.Usuario</class>
-    <class>edu.sena.f2025316.appwebmaven01.modelo.TipoDocumento</class>
-    <class>edu.sena.f2025316.appwebmaven01.modelo.Municipio</class>
-    <class>edu.sena.f2025316.appwebmaven01.modelo.Rol</class>
-    <class>edu.sena.f2025316.appwebmaven01.modelo.Operacion</class>
-    <class>edu.sena.f2025316.appwebmaven01.modelo.RolOperacion</class>
-    <class>edu.sena.f2025316.appwebmaven01.modelo.Departamento</class>
-    <class>edu.sena.f2025316.appwebmaven01.modelo.UsuarioRol</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <!--
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/db_usuarios?zeroDateTimeBehavior=CONVERT_TO_NULL"/>

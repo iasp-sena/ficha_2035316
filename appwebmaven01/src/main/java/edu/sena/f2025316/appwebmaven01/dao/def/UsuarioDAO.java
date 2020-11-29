@@ -6,7 +6,9 @@
 package edu.sena.f2025316.appwebmaven01.dao.def;
 
 import edu.sena.f2025316.appwebmaven01.exeception.ConexionExcpetion;
+import edu.sena.f2025316.appwebmaven01.filtros.FiltroUsuario;
 import edu.sena.f2025316.appwebmaven01.modelo.Usuario;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -17,5 +19,7 @@ import javax.ejb.Local;
 public interface UsuarioDAO extends DAO<Usuario, Integer>{
     
     Usuario consularPorUsuarioClave(String usuario, String clave) throws ConexionExcpetion;
+
+    public List<Usuario> consultarPorFiltro(FiltroUsuario filtro) throws ConexionExcpetion;
     
 }

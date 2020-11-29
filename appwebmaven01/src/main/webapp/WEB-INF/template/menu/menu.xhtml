@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:fragment xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Interface
+    </div>
+
+    <ui:repeat value="#{sessionController.operacionesRol}" var="o">
+        <h:panelGroup rendered="#{empty o.operacionSuperior}">
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse#{o.id}" aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="#{o.icono}"></i>
+                    <span>#{o.nombre}</span>
+                </a>
+                <div id="collapse#{o.id}" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Acciones: #{o.subOperaciones.size()}</h6>
+                        <ui:repeat value="#{sessionController.operacionesRol}" var="so">
+
+                            <h:panelGroup rendered="#{not empty so.operacionSuperior and so.operacionSuperior.id eq o.id}">
+                                <a class="collapse-item" href="#{request.contextPath}#{so.link}">#{so.nombre}</a>
+
+                            </h:panelGroup>
+                        </ui:repeat>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider"/>
+        </h:panelGroup>
+    </ui:repeat>
+
+</ui:fragment>
+

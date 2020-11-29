@@ -6,10 +6,15 @@
         <class>edu.sena.f2025316.conexionjdbc.modelo.Usuario</class>
         <class>edu.sena.f2025316.conexionjdbc.modelo.TipoDocumento</class>
         <properties>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://sql158.main-hosting.eu:3306/u925035511_seekback_test"/>
+            <property name="javax.persistence.jdbc.user" value="u925035511_test"/>
+            <property name="javax.persistence.jdbc.password" value="123PorMi"/>
+            <!--
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/db_usuarios?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
             <property name="javax.persistence.jdbc.user" value="root"/>
-            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="javax.persistence.jdbc.password" value="1234567890"/>
+            -->
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="javax.persistence.schema-generation.database.action" value="none"/>
             <!--
             <property name="eclipselink.logging.level.sql" value="FINE"/>

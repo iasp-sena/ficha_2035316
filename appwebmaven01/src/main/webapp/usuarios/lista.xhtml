@@ -10,6 +10,57 @@
 
     <ui:define name="content">
         <h:form id="formUsuarios" class="col-12">
+            <h:panelGroup id="panelFiltro" layout="block">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <h:outputLabel for="tipoDocumento" value="Tipo documento:"/>
+                            <h:selectOneMenu id="tipoDocumento" 
+                                             value="#{usuarioController.filtro.tipoDocumentoId}"
+                                             class="form-control">
+                                <f:selectItem itemValue="#{null}"
+                                               itemLabel="Seleccione un tipo de documento"/>
+                                <f:selectItems value="#{tipoDocumentoController.tiposDocumentos}" 
+                                               var="td" 
+                                               itemValue="#{td.id}"
+                                               itemLabel="#{td.codigo}"/>
+                            </h:selectOneMenu>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <h:outputLabel for="numeroDocumento" value="Número documento"/>
+                            <h:inputText class="form-control" id="numeroDocumento" value="#{usuarioController.filtro.numeroDocumento}"/>
+                            <!--<h:message for="tipoDocumento" id="msgDocumento" class="messages-global" 
+                                infoClass="message alert alert-primary"
+                                errorClass="message alert alert-danger"
+                                showDetail="true" showSummary="true"/> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <h:outputLabel for="nombres" value="Nombres:"/>
+                            <h:inputText class="form-control" id="nombres" value="#{usuarioController.filtro.nombres}"/>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <h:outputLabel for="apellidos" value="Apellidos:"/>
+                            <h:inputText class="form-control" id="apellidos" value="#{usuarioController.filtro.apellidos}"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <h:commandButton class="btn btn-primary" actionListener="#{usuarioController.filtrar()}" value="Filtar">
+                            <f:ajax execute="panelFiltro" render="tblUsuarios"/>
+                        </h:commandButton>
+                    </div>
+                </div>
+            </h:panelGroup>
+            <hr/>
             <h:dataTable id="tblUsuarios" class="table table-striped"
                          value="#{usuarioController.usuarios}"
                          var="u">

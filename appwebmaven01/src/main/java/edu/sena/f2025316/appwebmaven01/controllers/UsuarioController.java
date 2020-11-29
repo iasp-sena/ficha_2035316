@@ -7,11 +7,14 @@ package edu.sena.f2025316.appwebmaven01.controllers;
 
 import edu.sena.f2025316.appwebmaven01.builder.UsuarioBuilder;
 import edu.sena.f2025316.appwebmaven01.exeception.ConexionExcpetion;
+import edu.sena.f2025316.appwebmaven01.filtros.FiltroUsuario;
 import edu.sena.f2025316.appwebmaven01.modelo.Usuario;
 import edu.sena.f2025316.appwebmaven01.services.UsuarioService;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
@@ -30,6 +33,7 @@ public class UsuarioController implements Serializable {
 
     private Usuario usuario;
     private List<Usuario> usuarios;
+    private FiltroUsuario filtro;
 
     public UsuarioController() {
 
@@ -41,6 +45,7 @@ public class UsuarioController implements Serializable {
                 .tipoDocumentoId(null)
                 .municipioId(null)
                 .build();
+        filtro = new FiltroUsuario();
     }
 
     public Usuario getUsuario() {
@@ -50,6 +55,15 @@ public class UsuarioController implements Serializable {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+
+    public FiltroUsuario getFiltro() {
+        return filtro;
+    }
+
+    public void setFiltro(FiltroUsuario filtro) {
+        this.filtro = filtro;
+    }
+    
 
     public List<Usuario> getUsuarios() {
         try {
@@ -72,6 +86,14 @@ public class UsuarioController implements Serializable {
         } catch (ConexionExcpetion ex) {
             System.out.println("Error al registrar usuario");
             ex.printStackTrace();
+        }
+    }
+    
+    public void filtrar(){
+        try {
+            usuarios = usuarioService.buscarPorFiltro(filtro);
+        } catch (ConexionExcpetion ex) {
+            Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

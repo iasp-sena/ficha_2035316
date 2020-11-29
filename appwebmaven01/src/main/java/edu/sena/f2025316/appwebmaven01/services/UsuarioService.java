@@ -8,9 +8,12 @@ package edu.sena.f2025316.appwebmaven01.services;
 import edu.sena.f2025316.appwebmaven01.dao.def.TipoDocumentoDAO;
 import edu.sena.f2025316.appwebmaven01.dao.def.UsuarioDAO;
 import edu.sena.f2025316.appwebmaven01.exeception.ConexionExcpetion;
+import edu.sena.f2025316.appwebmaven01.filtros.FiltroUsuario;
 import edu.sena.f2025316.appwebmaven01.modelo.TipoDocumento;
 import edu.sena.f2025316.appwebmaven01.modelo.Usuario;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -35,6 +38,13 @@ public class UsuarioService {
 
     public Usuario consultarPorUsuarioYClave(String nombreUsuario, String clave) throws ConexionExcpetion {
         return usuarioDAO.consularPorUsuarioClave(nombreUsuario, clave);
+    }
+
+    public List<Usuario> buscarPorFiltro(FiltroUsuario filtro) throws ConexionExcpetion {
+        if(filtro.isValid()){
+            return usuarioDAO.consultarPorFiltro(filtro);
+        } 
+        return new ArrayList<>();
     }
     
 }
